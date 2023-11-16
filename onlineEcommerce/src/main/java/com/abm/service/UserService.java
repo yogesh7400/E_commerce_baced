@@ -9,6 +9,14 @@ public interface UserService {
 	
 	public User findUserById(Long userId) throws UserException;
 	
+	public List<User> findAllUsers();
+
+	public User getDefaultUser() throws UserException;
+
+	
+
+
+	
 
 
 }
