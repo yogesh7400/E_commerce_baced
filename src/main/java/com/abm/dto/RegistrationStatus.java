@@ -1,5 +1,6 @@
 package com.abm.dto;
 
+
 public class RegistrationStatus extends Status{
 	
 	private long retailerId;

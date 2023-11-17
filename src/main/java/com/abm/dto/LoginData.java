@@ -1,5 +1,6 @@
 package com.abm.dto;
 
+
 public class LoginData {
 	
 	private String email;

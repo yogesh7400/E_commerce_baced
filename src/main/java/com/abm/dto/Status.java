@@ -1,5 +1,6 @@
 package com.abm.dto;
 
+
 public class Status {
 	private boolean status;
 	private String messageIfAny;

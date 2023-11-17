@@ -16,5 +16,4 @@ public interface RetailerRepository extends JpaRepository<Retailer, Long> {
 	@Query("select count(c) from Retailer c where c.email = ?1")
 	public Long findIfRetailerExists(String email);
 	
-
 }

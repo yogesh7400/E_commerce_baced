@@ -1,5 +1,6 @@
 package com.abm.dto;
 
+
 public class LoginStatus extends Status {
 	private int retailerId;
 	private String name;

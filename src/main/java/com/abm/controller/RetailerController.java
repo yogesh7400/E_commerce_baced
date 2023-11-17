@@ -42,6 +42,7 @@ public class RetailerController {
 				return status;
 			}
 		}
+		
 
 	    @PostMapping("/login")
 		public LoginStatus login(@RequestBody Retailer retailer) {

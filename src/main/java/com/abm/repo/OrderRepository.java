@@ -12,4 +12,5 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
 	@Query("select u from Order o join o.user u where u.id = ?1")
 	List<Order> findByUser(int id);
 
+	
 }

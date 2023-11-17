@@ -22,7 +22,7 @@ import com.abm.service.ProductService;
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin
-public class ProductController {
+public class ProductController{
 
     @Autowired
     private ProductService productService;
