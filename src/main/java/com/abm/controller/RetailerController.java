@@ -1,7 +1,10 @@
 package com.abm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,10 @@ public class RetailerController {
 	    @Autowired
 	    private RetailerService retailerService;
 	    
+	    @Autowired
+	    private RetailerRepository retailerRepository;
+	    
+	 
 		@PostMapping("/register")
 		public RegistrationStatus register(@RequestBody Retailer retailer) {
 			try {
@@ -60,28 +67,12 @@ public class RetailerController {
 				return status;
 			}
 		}
-
-
-//	    @PostMapping("/reset-password")
-//	    public Retailer resetPassword(@RequestParam String email, @RequestParam String newPassword) {
-//	    Retailer existingRetailer = retailerRepository.findByEmail(email);
-//	        if (existingRetailer != null) {
-//	        	existingRetailer.setPassword(newPassword);
-//	            return retailerRepository.save(existingRetailer);
-//	        } else {
-//	            throw new RuntimeException("User not found. Password reset failed.");
-//	        }
-//	    }
-
 	    
+	    @GetMapping("/retailerD")
+	    public List<Retailer>getAllRetailers() throws RetailerException{
+	    	return retailerRepository.findAll();
+	    }
 	    
-	    
-	    
-	    
-	    
-	    
-	
-	
-	
+	    	
 
 }
