@@ -33,5 +33,9 @@ public class RetailerService {
 		else
 			throw new RetailerException("Invalid Email/Password!");
 	}
+	
+	public void deleteAccountById(Long id) {
+		retailerRepository.deleteById(id);
+    }
 
 }
