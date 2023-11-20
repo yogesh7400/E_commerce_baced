@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.abm.entity.Address;
 import com.abm.entity.User;
 import com.abm.exception.UserException;
+import com.abm.repo.AddressRepository;
 import com.abm.repo.UserRepository;
 
 @Service
@@ -15,6 +17,8 @@ public class UserServiceImplementation implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private AddressRepository addressRepository;
 	
 	
 	
@@ -51,5 +55,23 @@ public class UserServiceImplementation implements UserService {
 	    }
 
 
+
+
+	@Override
+	public List<Address> getUserAddress(Long userId) {
+		 Optional<User> userOptional = userRepository.findById(userId);
+
+	        if (userOptional.isPresent()) {
+	            User user = userOptional.get();
+	            // Assuming the user has a reference to the address or an address ID
+	            // Adjust the logic based on your actual data model
+	            return user.getAddresses();
+	        } else {
+	            // Handle the case where the user with the specified ID is not found
+	            // You might throw an exception or return null based on your requirements
+	            return null;
+	        }
+	}
+	 
 
 }

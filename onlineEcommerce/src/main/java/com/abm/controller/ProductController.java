@@ -3,6 +3,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abm.entity.Product;
 import com.abm.exception.ProductException;
 import com.abm.request.CreateProductRequest;
+import com.abm.response.ApiResponse;
 import com.abm.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
+@CrossOrigin
 public class ProductController {
 
     @Autowired
@@ -34,6 +39,7 @@ public class ProductController {
             return "Bad Request: " + e.getMessage();
         }
     }
+
 
     @DeleteMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable Long productId) {
@@ -84,6 +90,17 @@ public class ProductController {
     public List<Product> getRecentlyAddedProducts() {
         return productService.recentlyAddedProduct();
     }
+    
+    @PostMapping("/creates")
+	public ResponseEntity<ApiResponse> createMultipleProduct(@RequestBody CreateProductRequest[] reqs) throws ProductException{
+		
+		for(CreateProductRequest product:reqs) {
+			productService.createProduct(product);
+		}
+		
+		ApiResponse res=new ApiResponse("products created successfully",true);
+		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
+	}
 
     @GetMapping("/filtered")
     public Page<Product> filterProducts(@RequestParam(required = false) String category,
